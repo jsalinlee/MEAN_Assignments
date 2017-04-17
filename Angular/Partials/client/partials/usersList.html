@@ -1,0 +1,16 @@
+<div ng-controller="UserListController">
+    <table>
+        <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Favorite Language</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users">
+                <td>{{ user.fname }}</td>
+                <td>{{ user.lname }}</td>
+                <td>{{ user.favLang }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

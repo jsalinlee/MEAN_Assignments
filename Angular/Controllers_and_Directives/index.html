@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Controllers and Directives</title>
+        <script src='bower_components/angular/angular.js'></script>
+        <script type="text/javascript" src="main.js"></script>
+        <link rel="stylesheet" type="text/css" href="static/skeleton.css">
+        <link rel="stylesheet" type="text/css" href="static/normalize.css">
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+    </head>
+    <body ng-app="app">
+        <div ng-controller="foodController as yumController">
+            <form ng-submit="yumController.add(typing)">
+                <div class="row">
+                    <h5 class="two columns">Favorite Food: </h5><input class="three columns" type="text" ng-model="typing"></h5>
+                    <input class="two columns" type="submit" value="Add Food"><!-- ng-click="yumController.add(typing)" -->
+                    <input class="three columns" type="text" placeholder="filter..." ng-model="filter">
+                </div>
+                <div class="row">
+                    <h5 class="seven columns">Currently Typing: <span ng-bind="typing"></span></h5>
+                    <div class="three columns">
+                        <ul class="food-list"><!-- ng-if="filter" -->
+                            <li ng-repeat="food in yumController.foods | filter: filter | orderBy:'label'">
+                                {{ food.label }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

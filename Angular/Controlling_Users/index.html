@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src='bower_components/angular/angular.js'></script>
+        <script type="text/javascript" src="main.js"></script>
+        <link rel="stylesheet" type="text/css" href="static/skeleton.css">
+        <link rel="stylesheet" type="text/css" href="static/normalize.css">
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+    </head>
+    <body ng-app="controllingApp">
+        <div class="container">
+            <div ng-controller="usersController as usersController">
+                <form method="post">
+                    <div class="row">
+                        <label>First Name: </label><input type="text" ng-model="fname">
+                    </div>
+                    <div class="row">
+                        <label>Last Name: </label><input type="text" ng-model="lname">
+                    </div>
+                    <div class="row">
+                        <label>Favorite Language: </label><input type="text" ng-model="favLang">
+                        <input type="submit" value="Create User" ng-click="usersController.add({ fname: fname, lname: lname, favLang: favLang }); fname=''; lname=''; favLang=''">
+                    </div>
+                </form>
+                <div class="row">
+                    <table>
+                        <thead>
+                            <th ng-click="usersController.sort_type = 'fname'; usersController.sort_reverse = !usersController.sort_reverse">First Name</th>
+                            <th ng-click="usersController.sort_type = 'lname'; usersController.sort_reverse = !usersController.sort_reverse">Last Name</th>
+                            <th ng-click="usersController.sort_type = 'favLang'; usersController.sort_reverse = !usersController.sort_reverse">Favorite Language</th>
+                            <th>Actions</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-model = "user_entry" ng-repeat="user in usersController.users | orderBy: usersController.sort_type: !usersController.sort_reverse">
+                                <td>{{ user.fname }}</td>
+                                <td>{{ user.lname }}</td>
+                                <td>{{ user.favLang }}</td>
+                                <td><input type="submit" value="Delete User" ng-click="usersController.delete(user)"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

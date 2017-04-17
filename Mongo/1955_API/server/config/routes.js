@@ -1,0 +1,12 @@
+var mongoose = require("mongoose");
+var persons = require("./../controllers/persons.js");
+
+module.exports = function(app) {
+    app.get("/", function(req, res) {
+        persons.show(req, res);
+    });
+
+    app.get("/new/:name", function(req, res) {
+        persons.create(req, res);
+    });
+}

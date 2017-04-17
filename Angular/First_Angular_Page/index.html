@@ -1,0 +1,19 @@
+<html ng-app="app">
+    <head>
+        <script src = 'bower_components/angular/angular.js'></script>
+        <script type="text/javascript">
+            var app = angular.module("app", []);
+
+            app.controller("First", function($scope) {
+                $scope.student = {myName: "Jonathan",
+                myFavoriteLanguage: "JavaScript",
+                myFavoriteJSLibrary: "Angular" }
+            })
+        </script>
+    </head>
+    <body>
+        <div ng-controller="First">
+            <h4>{{student.myName}} {{student.myFavoriteLanguage}} {{student.myFavoriteJSLibrary}}</h4>
+        </div>
+    </body>
+</html>

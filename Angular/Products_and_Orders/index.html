@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Products and Orders</title>
+        <script src="bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <link rel="stylesheet" type="text/css" href="static/skeleton.css">
+        <link rel="stylesheet" type="text/css" href="static/normalize.css">
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+    </head>
+    <body ng-app="app">
+        <div class="container">
+            <div ng-controller="productsController as pController">
+                <div class="row">
+                    Product Name: <input type="text" ng-model="pName">
+                </div>
+                <div class="row">
+                    Product Price: <input type="number" step="0.01" ng-model="pPrice">
+                    <input type="submit" value="Add Product" ng-click="pController.add({name: pName, price: pPrice, quantity: 50})">
+                </div>
+                <table class="u-full-width">
+                    <thead>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="product in pController.products">
+                            <td ng-bind="product.name"></td>
+                            <td ng-bind="'$' + product.price"></td>
+                            <td><input type="submit" value="Delete Product" ng-click="pController.delete(product)"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-controller="ordersController as oController">
+                <table class="u-full-width">
+                    <thead>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="order in oController.orders">
+                            <td ng-bind="order.name"></td>
+                            <td ng-bind="'$' + order.price"></td>
+                            <td ng-bind="order.quantity"></td>
+                            <td><input type="submit" value="Buy" ng-click="oController.buy(order)"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dojo Message Board</title>
+    </head>
+    <body>
+        <% if( typeof(errors) != "undefined" ) { %>
+            <% for (var i in errors) { %>
+                <h3><%= errors[i].message %></h3>
+            <% } %>
+        <% } %>
+        <h1>The Dojo Message Board</h1>
+        <form action="/post_message" method="post">
+            <label>Name: </label><input type="text" name="name">
+            <label>Message: </label><textarea name="message" rows="8" cols="80"></textarea>
+            <input type="submit" name="post" value="Post message">
+        </form>
+        <% for( var i = 0; i < message.length; i++) { %>
+            <h2>Name: <%= message[i].user %></h2>
+            <h3>Message: <%= message[i].text %></h3>
+            <% for( var j = 0; j < message[i].comments.length; j++ ) { %>
+                <h3>Name: <%= message[i].comments[j].user %></h3>
+                <h4>Comment: <%= message[i].comments[j].text %></h4>
+            <% } %>
+            <form action="/post_comment/<%= message[i].id %>" method="post">
+                <label>Name: </label><input type="text" name="cName">
+                <label>Message: </label><textarea name="comment" rows="4" cols="40"></textarea>
+                <input type="submit" value="Post comment">
+            </form>
+        <% } %>
+    </body>
+</html>
