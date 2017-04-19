@@ -1,0 +1,19 @@
+<div>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Show</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="friend in friends">
+                <td ng-bind="friend.fname + ' ' + friend.lname"></td>
+                <td><a href="#!/show/{{ friend._id }}">show</a></td>
+                <td><a href="#!/edit/{{ friend._id }}">update</a></td>
+                <td><a href="#!/" ng-click="delete(friend)">delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="#!/new"><input type="submit" value="New Friend"></a>
+</div>
